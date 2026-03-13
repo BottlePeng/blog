@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "blog_frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,8 +14,14 @@
   "devDependencies": {
     "@types/node": "^24.12.0",
     "@vitejs/plugin-vue": "^6.0.5",
+    "@vue/runtime-dom": "^3.5.30",
     "@vue/tsconfig": "^0.9.0",
+    "@yike-design/resolver": "^0.0.3",
+    "@yike-design/ui": "^0.0.21",
+    "less": "^4.6.3",
     "typescript": "~5.9.3",
+    "unplugin-auto-import": "^21.0.0",
+    "unplugin-vue-components": "^31.0.0",
     "vite": "^8.0.0",
     "vue-tsc": "^3.2.5"
   }

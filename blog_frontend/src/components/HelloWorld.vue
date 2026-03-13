@@ -21,8 +21,6 @@ const count = ref(0)
     <button class="counter" @click="count++">Count is {{ count }}</button>
   </section>
 
-  <div class="ticks"></div>
-
   <section id="next-steps">
     <div id="docs">
       <svg class="icon" role="presentation" aria-hidden="true">
@@ -90,4 +88,10 @@ const count = ref(0)
 
   <div class="ticks"></div>
   <section id="spacer"></section>
+
+  <yk-space>
+    <yk-button>主要按钮</yk-button>
+    <yk-button type="secondary">次要按钮</yk-button>
+    <yk-button type="outline">线框按钮</yk-button>
+  </yk-space>
 </template>
