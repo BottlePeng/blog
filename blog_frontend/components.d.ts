@@ -11,17 +11,20 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    HeadBar: typeof import('./src/components/HeadBar.vue')['default']
+    HeadBar: typeof import('./src/components/bar/HeadBar.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconAlarmFill: typeof import('@yike-design/ui/es/components/svg-icon')['IconAlarmFill']
     IconBellOutline: typeof import('@yike-design/ui/es/components/svg-icon')['IconBellOutline']
     IconPlusOutline: typeof import('@yike-design/ui/es/components/svg-icon')['IconPlusOutline']
     IconYike1Outline: typeof import('@yike-design/ui/es/components/svg-icon')['IconYike1Outline']
+    Menu: typeof import('./src/components/bar/Menu.vue')['default']
+    MenuBar: typeof import('./src/components/bar/MenuBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     YkAvatar: typeof import('@yike-design/ui/es')['YkAvatar']
     YkButton: typeof import('@yike-design/ui/es')['YkButton']
     YkSpace: typeof import('@yike-design/ui/es')['YkSpace']
+    YkText: typeof import('@yike-design/ui/es')['YkText']
     YkTheme: typeof import('@yike-design/ui/es')['YkTheme']
   }
 }

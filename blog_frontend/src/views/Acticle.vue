@@ -1,5 +1,5 @@
 <template>
-    <div>总览</div>
+    <div>博客文章</div>
 </template>
 
 <script lang="ts" setup>

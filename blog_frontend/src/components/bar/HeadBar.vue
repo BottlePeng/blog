@@ -1,6 +1,6 @@
 <template>
     <div class="head-bar">
-        <yk-space class="head-bar-title" align="center" >
+        <yk-space class="head-bar-title" align="center" @click="backHome">
             博客后台管理系统
         </yk-space>
         <yk-space :size="24" align="center">
@@ -14,11 +14,17 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+    import { useRouter } from 'vue-router';
+    const router = useRouter();
 
+    // 返回总览
+    const backHome = () => {
+        router.push('/');
+    }
 </script>
 
-<style lang="less" scope>
+<style lang="less" scoped>
 .head-bar {
     position: fixed;
     top: 0;

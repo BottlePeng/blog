@@ -19,6 +19,7 @@
     "@yike-design/resolver": "^0.0.3",
     "@yike-design/ui": "^0.0.21",
     "less": "^4.6.3",
+    "mockjs": "^1.1.0",
     "typescript": "~5.9.3",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^31.0.0",

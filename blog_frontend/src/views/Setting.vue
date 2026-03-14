@@ -1,5 +1,5 @@
 <template>
-    <div>总览</div>
+    <div>设置</div>
 </template>
 
 <script lang="ts" setup>
