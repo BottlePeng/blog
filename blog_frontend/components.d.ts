@@ -11,8 +11,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    HeadBar: typeof import('./src/components/HeadBar.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    IconAlarmFill: typeof import('@yike-design/ui/es/components/svg-icon')['IconAlarmFill']
+    IconBellOutline: typeof import('@yike-design/ui/es/components/svg-icon')['IconBellOutline']
+    IconPlusOutline: typeof import('@yike-design/ui/es/components/svg-icon')['IconPlusOutline']
+    IconYike1Outline: typeof import('@yike-design/ui/es/components/svg-icon')['IconYike1Outline']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
+    YkAvatar: typeof import('@yike-design/ui/es')['YkAvatar']
     YkButton: typeof import('@yike-design/ui/es')['YkButton']
     YkSpace: typeof import('@yike-design/ui/es')['YkSpace']
+    YkTheme: typeof import('@yike-design/ui/es')['YkTheme']
   }
 }

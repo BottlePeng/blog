@@ -1,7 +1,9 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import HeadBar from './components/HeadBar.vue';
 </script>
 
 <template>
-  <HelloWorld />
+  <HeadBar />
+  <!-- 内容 -->
+  <router-view />
 </template>
