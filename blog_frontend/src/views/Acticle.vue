@@ -1,9 +1,9 @@
 <template>
-    <div>博客文章</div>
+    <TopTitle/>
 </template>
 
 <script lang="ts" setup>
-
+import TopTitle from '../components/bar/TopTitle.vue';
 </script>
 
 <style lang="less" scoped>

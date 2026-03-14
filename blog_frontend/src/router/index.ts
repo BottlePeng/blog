@@ -5,7 +5,7 @@ import LocalFile from '../views/LocalFile.vue'
 import Acticle from '../views/Acticle.vue'
 import Setting from '../views/Setting.vue'
 
-const routes = [
+export const routes = [
     {
         path: '/',
         name: '/home',
@@ -15,19 +15,19 @@ const routes = [
             {
                 // 当 /overview 匹配成功
                 // UserProfile 将被渲染到 User 的 <IndexView> 内部
-                path: 'overview',
+                path: '/overview',
                 component: OverView,
             },
             {
-                path: 'localfile',
+                path: '/localfile',
                 component: LocalFile,
             },
             {
-                path: 'acticle',
+                path: '/acticle',
                 component: Acticle,
             },
             {
-                path: 'setting',
+                path: '/setting',
                 component: Setting,
             },
         ],

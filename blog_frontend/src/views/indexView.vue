@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-    import MenuBar from '../components/bar/MenuBar.vue';
+import MenuBar from '../components/bar/MenuBar.vue';
 </script>
 
 <style lang="less" scoped>
