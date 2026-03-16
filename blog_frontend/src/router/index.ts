@@ -8,29 +8,30 @@ import Setting from '../views/Setting.vue'
 export const routes = [
     {
         path: '/',
-        name: '/home',
-        redirect: '/overview',
+        redirect: '/view',
         component: IndexView,
         children: [
             {
-                // 当 /overview 匹配成功
-                // UserProfile 将被渲染到 User 的 <IndexView> 内部
-                path: '/overview',
+                path: '/view',
                 component: OverView,
             },
             {
-                path: '/localfile',
+                path: '/view/file',
                 component: LocalFile,
             },
             {
-                path: '/acticle',
+                path: '/view/acticle',
                 component: Acticle,
             },
             {
-                path: '/setting',
+                path: '/view/setting',
                 component: Setting,
             },
         ],
+    },
+    {
+        path: '/login',
+        component: () => import('../views/Login.vue'),
     },
 ]
 

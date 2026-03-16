@@ -33,6 +33,7 @@ declare module 'vue' {
     TopTitle: typeof import('./src/components/bar/TopTitle.vue')['default']
     YkAvatar: typeof import('@yike-design/ui/es')['YkAvatar']
     YkButton: typeof import('@yike-design/ui/es')['YkButton']
+    YkInput: typeof import('@yike-design/ui/es')['YkInput']
     YkRadio: typeof import('@yike-design/ui/es')['YkRadio']
     YkRadioGroup: typeof import('@yike-design/ui/es')['YkRadioGroup']
     YkSpace: typeof import('@yike-design/ui/es')['YkSpace']

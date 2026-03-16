@@ -1,22 +1,22 @@
 // 导航栏
 export const navLinks = [
     {
-        path: '/overview',
+        path: '/view',
         name: '总览',
         icon: 'IconHomepageFill',
     },
     {
-        path: '/localfile',
+        path: '/view/file',
         name: '本地文件',
         icon: 'IconFolderCloseFill',
     },
     {
-        path: '/acticle',
+        path: '/view/acticle',
         name: '博客文章',
         icon: 'IconFileFill',
     },
     {
-        path: '/setting',
+        path: '/view/setting',
         name: '设置',
         icon: 'IconSettingsFill',
     }
@@ -25,13 +25,13 @@ export const navLinks = [
 // 总览
 export const overLinks = [
     {
-        path: '/localfile',
+        path: '/view/file',
         name: '本地文件',
         total: '0M',
         bgColor: '180deg, #0040ff5b 0%, #0040ff44 100%',
     },
     {
-        path: '/editarticle',
+        path: '/view/editacticle',
         name: '博客文章',
         total: 0,
         bgColor: '180deg, #ff600829 0%, #ff60083d 100%',

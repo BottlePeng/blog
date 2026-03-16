@@ -9,7 +9,7 @@
                 <!-- 默认跟随系统颜色，并显示控制主题的“太阳”和“月亮”控件 -->
                 <yk-theme />
             </div>
-            <yk-button>退出</yk-button>
+            <yk-button @click="backLogin">退出</yk-button>
         </yk-space>
     </div>
 </template>
@@ -21,6 +21,12 @@
     // 返回总览
     const backHome = () => {
         router.push('/');
+    }
+
+    // 退出登录
+    const backLogin = () => {
+        localStorage.removeItem('token');
+        router.push('/login');
     }
 </script>
 
