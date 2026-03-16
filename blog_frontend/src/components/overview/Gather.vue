@@ -1,8 +1,8 @@
 <template>
-    <yk-space class="gather">
+    <yk-space class="gather" size="m">
         <div v-for="overLink in gathers" :key="overLink.name" class="gather_list" :style="{ background: 'linear-gradient(' + overLink.bgColor + ')' }">
             <yk-space dir="vertical" size="s">
-                <yk-text>{{ overLink.name }}</yk-text>
+                <yk-text class="gather_list_name">{{ overLink.name }}</yk-text>
                 <yk-title :level="2" style="margin: 0;">{{ overLink.total }}</yk-title>
             </yk-space>
             <yk-button v-if="overLink.name !== '本地文件'" type="secondary" size="xl" shape="square">
@@ -44,15 +44,20 @@ onMounted(() => {
 <style lang="less" scoped>
     .gather {
         width: 100%;
-        padding-right: @space-l;
         .gather_list {
             width: 50%;
             height: 100px;
             display: flex;
             justify-content: space-between;
-            padding: @space-xl;
+            padding: @space-l;
             border-radius: @radius-m;
             align-items: center;
+
+            .gather_list_name {
+                font-size: @size-s;
+                font-weight: 600;
+                color: @font-color-l;
+            }
         }
     }
 </style>

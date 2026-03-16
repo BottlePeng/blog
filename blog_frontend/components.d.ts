@@ -11,6 +11,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Datas: typeof import('./src/components/overview/Datas.vue')['default']
+    Doughnut: typeof import('./src/components/echarts/Doughnut.vue')['default']
+    DoughnutChart: typeof import('./src/components/echarts/DoughnutChart.vue')['default']
     Gather: typeof import('./src/components/overview/Gather.vue')['default']
     HeadBar: typeof import('./src/components/bar/HeadBar.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
@@ -18,6 +21,8 @@ declare module 'vue' {
     IconBellOutline: typeof import('@yike-design/ui/es/components/svg-icon')['IconBellOutline']
     IconPlusOutline: typeof import('@yike-design/ui/es/components/svg-icon')['IconPlusOutline']
     IconYike1Outline: typeof import('@yike-design/ui/es/components/svg-icon')['IconYike1Outline']
+    Line: typeof import('./src/components/echarts/Line.vue')['default']
+    LineChart: typeof import('./src/components/echarts/LineChart.vue')['default']
     Menu: typeof import('./src/components/bar/Menu.vue')['default']
     MenuBar: typeof import('./src/components/bar/MenuBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -25,6 +30,8 @@ declare module 'vue' {
     TopTitle: typeof import('./src/components/bar/TopTitle.vue')['default']
     YkAvatar: typeof import('@yike-design/ui/es')['YkAvatar']
     YkButton: typeof import('@yike-design/ui/es')['YkButton']
+    YkRadio: typeof import('@yike-design/ui/es')['YkRadio']
+    YkRadioGroup: typeof import('@yike-design/ui/es')['YkRadioGroup']
     YkSpace: typeof import('@yike-design/ui/es')['YkSpace']
     YkText: typeof import('@yike-design/ui/es')['YkText']
     YkTheme: typeof import('@yike-design/ui/es')['YkTheme']

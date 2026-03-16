@@ -19,6 +19,7 @@
     "@vue/tsconfig": "^0.9.0",
     "@yike-design/resolver": "^0.0.3",
     "@yike-design/ui": "^0.0.21",
+    "echarts": "^6.0.0",
     "less": "^4.6.3",
     "mockjs": "^1.1.0",
     "typescript": "~5.9.3",
