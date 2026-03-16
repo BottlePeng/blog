@@ -166,7 +166,6 @@ export type comments = {
 export type res = {
     code: number, //200-正常/300-未通过token验证/400-用户名或密码错误/500-服务器错误
     data?: {
-        count?: number, // 评论总数
         list: {
             id: number,
             article?:{

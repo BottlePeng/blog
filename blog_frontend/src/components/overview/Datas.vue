@@ -1,5 +1,5 @@
 <template>
-    <yk-space dir="vertical" size="m"  style="width: 50%; height: 100%;">
+    <yk-space dir="vertical" size="m" style="width: 100%;">
         <div class="data-card">
             <div class="data-card-title">
                 <p class="data-card-title-name">访问量</p>
@@ -28,28 +28,7 @@
 
     const radio = ref('week')
     const data = ref('week')
-
-    
-
 </script>
 
 <style lang="less" scoped>
-    .data-card {
-        padding: @space-l;
-        border-radius: @radius-l;
-        background: @bg-color-l;
-        width: 100%;
-        height: 50%;
-        .data-card-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .data-card-title-name {
-                font-size: @size-s;
-                font-weight: 600;
-                color: @font-color-l;
-            }
-        }
-    }
 </style>

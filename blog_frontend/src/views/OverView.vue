@@ -2,9 +2,9 @@
     <yk-space dir="vertical" size="m" style="padding-right: 16px;">
         <TopTitle/>
         <Gather/>
-        <yk-space dir="horizontal" size="m" style="width: 100%; height: 50%;">
+        <yk-space dir="horizontal" size="m" style="width: 100%;">
             <Datas/>
-            <div class="overview-container" style="background: #fff; width: 30px; height: 30px; width: 50%;">评论</div>
+            <Comments/>
         </yk-space>
     </yk-space>
 </template>
@@ -13,6 +13,7 @@
 import TopTitle from '../components/bar/TopTitle.vue';
 import Datas from '../components/overview/Datas.vue';
 import Gather from '../components/overview/Gather.vue';
+import { Comments } from '../components/overview/reply';
 </script>
 
 <style lang="less" scoped>

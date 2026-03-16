@@ -11,6 +11,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Comment: typeof import('./src/components/overview/reply/Comment.vue')['default']
+    Comments: typeof import('./src/components/overview/reply/Comments.vue')['default']
     Datas: typeof import('./src/components/overview/Datas.vue')['default']
     Doughnut: typeof import('./src/components/echarts/Doughnut.vue')['default']
     DoughnutChart: typeof import('./src/components/echarts/DoughnutChart.vue')['default']
@@ -25,6 +27,7 @@ declare module 'vue' {
     LineChart: typeof import('./src/components/echarts/LineChart.vue')['default']
     Menu: typeof import('./src/components/bar/Menu.vue')['default']
     MenuBar: typeof import('./src/components/bar/MenuBar.vue')['default']
+    Reply: typeof import('./src/components/overview/reply/Reply.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TopTitle: typeof import('./src/components/bar/TopTitle.vue')['default']
