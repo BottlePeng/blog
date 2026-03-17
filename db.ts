@@ -7,8 +7,8 @@ let users = `
     name VARCHAR(100) NOT NULL COMMENT '用户名',
     email VARCHAR(100) NOT NULL COMMENT '邮箱',
     password VARCHAR(255) NOT NULL COMMENT '密码',
-    created_at DATETIME NOT NULL COMMENT '创建时间',
-    imgurl VARCHAR(100) COMMENT '头像',
+    filesNum INT NOT NULL DEFAULT 0 COMMENT '文件数',
+    articlesNum INT NOT NULL DEFAULT 0 COMMENT '文章数',
     PRIMARY KEY (id)
     ) COMMENT='用户';
 `
