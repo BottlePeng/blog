@@ -3,16 +3,19 @@
         <yk-space dir="vertical" class="login-box">
             <yk-input v-model="user.name" type="text" />
             <yk-input v-model="user.password" type="text" />
-            <yk-button type="primary" @click="login">注册</yk-button>
+            <yk-button type="primary" @click="signup">注册</yk-button>
         </yk-space>
     </yk-space>
 </template>
 
 <script lang="ts" setup>
 import { getCurrentInstance } from 'vue';
+import { signupApi } from '../api';
+import { useRouter } from 'vue-router';  // 使用 useRouter 而不是导入 router 实例
 
 
 const proxy: any = getCurrentInstance()?.proxy;
+const router = useRouter();
 
 // 用户
 const user = {
@@ -20,13 +23,22 @@ const user = {
     password: '',
 };
 
-const login = () => {
+const signup = async () => {
     if (user.name && user.password) {
-        console.log(user);
+        // 注册逻辑
+        let res = await signupApi({
+            name: user.name,
+            password: user.password,
+        });
+        if (res.data.isSuccess) {
+            proxy.$message({ type:'success', message: '注册成功' });
+            router.push('/login');
+        }
     } else {
         proxy.$message({ type: 'warning', message: '用户名或密码不能为空' });
     }
 }
+
 
 </script>
 

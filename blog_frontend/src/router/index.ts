@@ -58,68 +58,46 @@ const router = createRouter({
 })
 
 
-// 添加路由守卫，检查登录状态
-// 记录最后一次请求时间
-let lastCheckTime = 0;
-const CHECK_INTERVAL = 5000; // 5秒内不重复请求
-
 router.beforeEach(async (to, from, next) => {
     try {
-        const now = Date.now();
-        let isRegistered;
+        // 调用 API 检查注册状态
+        const res = await isRegisterApi();
+        const isRegistered = res.data?.isRegister === true;
 
-        // 如果距离上次请求超过5秒，或者没有缓存，才请求 API
-        if (now - lastCheckTime > CHECK_INTERVAL) {
-            const res = await isRegisterApi();
-            isRegistered = res.data?.isRegister === true;
+        // 如果已经注册，直接跳转到登录页
+        if (isRegistered) {
+            console.log('已注册，跳转到登录页');
 
-            // 更新最后请求时间
-            lastCheckTime = now;
+            // 如果已经在登录页，允许访问
+            if (to.path === '/login') {
+                next();
+                return;
+            }
 
-            // 可以临时缓存到localStorage
-            localStorage.setItem('isRegistered', isRegistered? "true" : "false");
-        } else {
-            localStorage.getItem('isRegistered') === "true";
+            // 其他所有页面都跳转到登录页
+            next('/login');
+            return;
         }
 
-        const isLoggedIn = localStorage.getItem('token');
-
-        // 如果没有注册
+        // 未注册的用户逻辑
         if (!isRegistered) {
+            // 如果已经在注册页，允许访问
             if (to.path === '/signup') {
                 next();
                 return;
             }
+            // 否则跳转到注册页
             console.log('未注册，跳转到注册页');
             next('/signup');
             return;
         }
 
-        // 已注册的用户逻辑
-        if (isLoggedIn) {
-            if (to.path === '/login' || to.path === '/signup') {
-                next('/view');
-                return;
-            }
-            console.log('已登录，允许访问');
-            next();
-            return;
-        }
-
-        if (to.path === '/login') {
-            next();
-            return;
-        }
-
-        if (to.path !== '/signup' && to.path !== '/') {
-            next('/login');
-            return;
-        }
-        
+        // 默认放行（实际上不会执行到这里，因为上面都有 return）
         next();
 
     } catch (error) {
         console.error('路由守卫错误:', error);
+        // 出错时，允许访问登录页和注册页
         if (to.path === '/login' || to.path === '/signup') {
             next();
         } else {

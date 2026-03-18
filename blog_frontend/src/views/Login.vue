@@ -22,7 +22,7 @@ const user = {
 
 const login = () => {
     if (user.name && user.password) {
-        console.log(user);
+        
     } else {
         proxy.$message({ type: 'warning', message: '用户名或密码不能为空' });
     }
