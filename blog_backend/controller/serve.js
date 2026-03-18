@@ -63,7 +63,8 @@ exports.signin = async (req, res) => {
 
 // 总览
 exports.overview = async (req, res) => {
-    if (req.token === _token) {
+    let data = req.body;
+    if (data.token === _token) {
         res.send({
             code: 200,
             data: {

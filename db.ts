@@ -71,7 +71,5 @@ export type res = {
     data?: {
         files: string | number, // 文件总数
         atricles: number, // 文章总数
-        praises: number, // 文章点赞总数
-        comments: number, // 文章评论总数
     }
 }
