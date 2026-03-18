@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const config = require('./config/default')
+const db = require('./model/db')
 
 // 加入静态文件
 app.use(express.static(__dirname + '/data'))
@@ -28,5 +29,8 @@ require('./routes')(app) // 引入路由
 
 // 启动
 app.listen(config.port, () => {
+  db.create();
+  console.log('数据库连接/创建成功');
+
   console.log(`已启动端口 ${config.port}`)
 })

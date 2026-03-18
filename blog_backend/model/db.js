@@ -1,27 +1,7 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const config = require('../config/default');
 
-// 链接数据库
-const connetion = mysql.createConnection({
-    host: config.database.HOST,
-    user: config.database.USER,
-    password: config.database.PASSWORD, 
-});
-
-// 直接连接
-let query = (sql, values) => {
-    return new Promise((resolve, reject) => {
-        connetion.query(sql, values, (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
-    });
-};
-
-// 链接指定数据库
+// 只使用连接池
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: config.database.HOST,
@@ -30,33 +10,67 @@ const pool = mysql.createPool({
     database: config.database.DB
 });
 
+// 封装查询方法 - 使用连接池
+let query = (sql, values) => {
+    return new Promise((resolve, reject) => {
+        pool.getConnection((err, connection) => {
+            if (err) {
+                reject(err);
+            } else {
+                connection.query(sql, values, (err, results) => {
+                    connection.release(); // 释放连接回连接池
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(results);
+                    }
+                });
+            }
+        });
+    });
+};
+
 // 通过 pool.getConnection 获取连接
-let queryPool = () => {
+let queryPool = (sql, values) => {
     return new Promise((resolve, reject) => {
         pool.getConnection((err, connection) => {
             if (err) {
                 reject(err);
             } else {
                 connection.query(sql, values, (err, result) => {
+                    connection.release(); // 释放连接
                     if (err) {
                         reject(err);
                     } else {
                         resolve(result);
                     }
-                    connection.release(); // 释放连接
-                    // connection.end(); // 关闭连接
                 })
             }
         });
     });
 };
 
-// 数据库创建语句
-let xxblog = `CREATE DATABASE IF NOT EXISTS ${config.database.DB} DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;`;
+// 数据库创建语句（不指定数据库，因为数据库可能还不存在）
+let createDB = `CREATE DATABASE IF NOT EXISTS ${config.database.DB} DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;`;
 
-// 创建数据库
-let creatDatabase = (db) => {
-    return query(db,[]);
+// 创建数据库 - 使用一个临时连接，不指定数据库
+let createDatabase = () => {
+    return new Promise((resolve, reject) => {
+        const tempConnection = mysql.createConnection({
+            host: config.database.HOST,
+            user: config.database.USER,
+            password: config.database.PASSWORD,
+        });
+        
+        tempConnection.query(createDB, (err, result) => {
+            tempConnection.end(); // 立即关闭临时连接
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
 }
 
 // 数据表
@@ -73,15 +87,27 @@ let users = `
 `
 
 // 创建数据表
-let createTable = (table) => {
-    return query(table,[]);
+let createTable = () => {
+    return query(users, []);
 }
 
 // 创建数据库和数据表
-async function creat() {
-    await creatDatabase(xxblog);
-    await createTable(users);
+async function create() {
+    try {
+        await createDatabase();
+        await createTable();
+    } catch (err) {
+        console.error('创建失败:', err);
+        throw err;
+    }
 }
 
-// 开启连接数据库
-connetion.connect();
+// 导出所有需要的方法
+module.exports = {
+    query,
+    queryPool,
+    createDatabase,
+    createTable,
+    create,
+    pool
+};
