@@ -21,6 +21,7 @@ let users = `
 // 响应
 export type res = {
     data?: {
+        code: number, // 状态码 200表示成功 400表示失败
         isRegister: boolean, // 是否注册
     }
 }
@@ -34,6 +35,7 @@ export type signup = {
 }
 // 响应
 export type res = {
+    code: number,
     data?: {
        isSuccess: boolean, // 是否成功注册
     }
@@ -49,6 +51,7 @@ export type signin = {
 }
 // 响应
 export type res = {
+    code: number,
     data?: {
         id: number,
         token: string,
@@ -64,6 +67,7 @@ export type overview = {
 }
 // 响应
 export type res = {
+    code: number,
     data?: {
         files: string | number, // 文件总数
         atricles: number, // 文章总数

@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const config = require('./config/default')
 const db = require('./model/db')
+const jwt = require('./lib/jwt')
 
 // 加入静态文件
 app.use(express.static(__dirname + '/data'))
@@ -25,7 +26,41 @@ app.use(function (req, res, next) {
 // 解析前端的数据
 app.use(express.json()) // 解析位 request.body
 
-require('./routes')(app) // 引入路由
+// token 处理
+app.use(async (req, res, next) => {
+  // 放行不需要验证的路径
+  const publicPaths = ['/isRegister', '/signup', '/signin'];
+  if (publicPaths.includes(req.path)) {
+    return next();
+  }
+
+  try {
+    // 检查请求体和token
+    if (!req.body) {
+      return res.status(400).json({ error: '请求体不能为空' });
+    }
+
+    if (typeof req.body.token === 'undefined') {
+      return res.status(401).json({ error: '缺少token参数' });
+    }
+
+    let token = req.body.token;
+    let isok = jwt.verifyToken(token);
+    
+    if (isok) {
+      next();
+    } else {
+      // 验证未通过
+      res.status(403).json({ error: 'token验证失败' });
+    }
+  } catch (error) {
+    console.error('Token处理错误:', error);
+    res.status(500).json({ error: '服务器错误' });
+  }
+})
+
+// 引入路由
+require('./routes')(app) 
 
 // 启动
 app.listen(config.port, () => {

@@ -1,8 +1,8 @@
 <template>
     <yk-space class="login">
         <yk-space dir="vertical" class="login-box">
-            <yk-input v-model="user.name" placeholder="Username" type="text" />
-            <yk-input v-model="user.password" placeholder="Password" type="password" />
+            <yk-input v-model="user.name" type="text" />
+            <yk-input v-model="user.password" type="password" />
             <yk-button type="primary" @click="login">登录</yk-button>
         </yk-space>
     </yk-space>
