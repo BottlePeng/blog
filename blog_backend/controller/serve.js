@@ -1,5 +1,8 @@
 const db_model = require('../model/db_model');
 const jwt = require('../lib/jwt');
+const { ref } = require('node:process');
+
+let _token = ref('');
 
 // 是否注册
 exports.isRegister = async (req, res) => {
@@ -42,7 +45,7 @@ exports.signin = async (req, res) => {
     await db_model.signin(data).then((result) => {
         if (result.length > 0) {
             // 生成token
-            let _token = jwt.generateToken(data.name);// 这里的data.name是用户名s,可以随意传入
+            _token = jwt.generateToken(data.name);// 这里的data.name是用户名s,可以随意传入
             res.send({
                 code: 200,
                 data: {
@@ -56,4 +59,21 @@ exports.signin = async (req, res) => {
             })
         }
     })
+}
+
+// 总览
+exports.overview = async (req, res) => {
+    if (req.token === _token) {
+        res.send({
+            code: 200,
+            data: {
+               files: ( Math.random() * 100 ).toFixed(2) + 'M',  // 生成 0-99 之间的随机数 + 'M'
+               atricles: Math.floor(Math.random() * 50)      // 生成 0-49 之间的随机数
+            },
+        })
+    } else {
+        res.send({
+            code: 400,
+        })
+    }
 }

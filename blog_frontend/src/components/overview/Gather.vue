@@ -5,7 +5,7 @@
                 <yk-text class="gather_list_name">{{ overLink.name }}</yk-text>
                 <yk-title :level="2" style="margin: 0;">{{ overLink.total }}</yk-title>
             </yk-space>
-            <yk-button v-if="overLink.name !== '本地文件'" type="secondary" size="xl" shape="square">
+            <yk-button v-if="overLink.name !== '本地文件'" type="secondary" size="xl" shape="square" @click="reset">
                 <IconPlusOutline />
             </yk-button>
         </div>
@@ -14,25 +14,35 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
-import { overviewData } from '../../mock/data';
 import { overLinks } from '../../utils/menu';
+import { mainData } from '../../main';
+import { overviewApi } from '../../api';
 
 const gathers = ref(overLinks);
 
 // 获取数据
 const drawGatherData = () => {
-    let data = overviewData.data;
     gathers.value.forEach(item => {
         switch (item.name) {
             case '本地文件':
-                item.total = data.files;
+                item.total = mainData.value.files;
                 break;
             case '博客文章':
-                item.total = data.atricles;
+                item.total = mainData.value.atricles;
                 break;
             default:
         }
     });
+}
+
+const reset = async () => {
+    if (localStorage.getItem('token')) {
+        let res = await overviewApi({ token: localStorage.getItem('token') })
+        if (res.code === 200) {
+            mainData.value = res.data;
+        }
+    }
+    drawGatherData();
 }
 
 // 在组件挂载完成后，获取数据

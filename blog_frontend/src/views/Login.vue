@@ -10,6 +10,9 @@
 
 <script lang="ts" setup>
 import { getCurrentInstance } from 'vue';
+import { signinApi } from '../api';
+import { useRouter } from 'vue-router';  // 使用 useRouter 而不是导入 router 实例
+const router = useRouter();
 
 
 const proxy: any = getCurrentInstance()?.proxy;
@@ -20,9 +23,19 @@ const user = {
     password: '',
 };
 
-const login = () => {
+const login = async () => {
     if (user.name && user.password) {
-        
+        let res = await signinApi({
+            name: user.name,
+            password: user.password,
+        });
+        if (res.code === 200) {
+            localStorage.setItem('token', res.data.token);
+            router.push('/view');
+            proxy.$message({ type:'success', message: '登录成功' });
+        } else {
+            proxy.$message({ type: 'warning', message: '用户名或密码错误' });
+        }
     } else {
         proxy.$message({ type: 'warning', message: '用户名或密码不能为空' });
     }

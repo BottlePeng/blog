@@ -19,4 +19,8 @@ module.exports = function(app) {
     app.post('/signin', function(req, res) {
         serve.signin(req, res);
     })
+
+    app.post('/overview', function(req, res) {
+        serve.overview(req, res);
+    })
 }

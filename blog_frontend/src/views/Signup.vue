@@ -12,10 +12,10 @@
 import { getCurrentInstance } from 'vue';
 import { signupApi } from '../api';
 import { useRouter } from 'vue-router';  // 使用 useRouter 而不是导入 router 实例
+const router = useRouter();
 
 
 const proxy: any = getCurrentInstance()?.proxy;
-const router = useRouter();
 
 // 用户
 const user = {

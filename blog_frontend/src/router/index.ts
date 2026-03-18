@@ -64,8 +64,16 @@ router.beforeEach(async (to, from, next) => {
         const res = await isRegisterApi();
         const isRegistered = res.data?.isRegister === true;
 
+        const isLogined = localStorage.getItem('token');
+
         // 如果已经注册，直接跳转到登录页
         if (isRegistered) {
+            // 如果已经登录，允许访问
+            if (isLogined) {
+                next();
+                return;
+            }
+
             console.log('已注册，跳转到登录页');
 
             // 如果已经在登录页，允许访问

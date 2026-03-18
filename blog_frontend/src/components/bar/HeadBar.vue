@@ -15,12 +15,17 @@
 </template>
 
 <script lang="ts" setup>
-    import { useRouter } from 'vue-router';
+// import { onMounted } from 'vue';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { overviewApi } from '../../api';
+import { mainData } from '../../main';
     const router = useRouter();
 
     // 返回总览
     const backHome = () => {
         router.push('/');
+        localStorage.removeItem('token');
     }
 
     // 退出登录
@@ -28,6 +33,15 @@
         localStorage.removeItem('token');
         router.push('/login');
     }
+
+    onMounted(async () => {
+        if (localStorage.getItem('token')) {
+            let res = await overviewApi({ token: localStorage.getItem('token') })
+            if (res.code === 200) {
+                mainData.value = res.data;
+            }
+        }
+    });
 </script>
 
 <style lang="less" scoped>
